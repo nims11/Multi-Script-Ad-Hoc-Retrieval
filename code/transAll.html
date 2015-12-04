@@ -1,0 +1,20 @@
+<html>
+<head><title>Serve me!</title>
+    <script type='text/javascript'>
+function fetchResults(){
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("POST","/all",false);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("query="+document.getElementById('query').value);
+    document.getElementById('response').innerHTML = xmlhttp.responseText;
+}
+    </script>
+</head>
+<body>
+    <form id='queryForm' name='queryForm'>
+        <label>Query:</label><input type='text' id='query' />
+        <input type='button' onClick='fetchResults()' value='Go' />
+    </form>
+    <div id='response'>
+    </div>
+</body>

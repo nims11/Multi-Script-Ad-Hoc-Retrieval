@@ -1,0 +1,35 @@
+<html>
+<head><title>Serve me!</title>
+    <script src="/static/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type='text/javascript'>
+$$(document).ready(function(){
+    $$('#but').click(function(){
+        $$.ajax({
+            url: '/search',
+            type: 'POST',
+            data: $$.param({'query': $$('#query').val()}),
+            success: function (data, textStatus, jqXHR) {
+                data = JSON.parse(data);
+                console.log(data);
+                html = data[0]+'<br />';
+                for(i = 1; i < data.length;i++){
+                    html += '<b>'+i+'. '+data[i]['score']+'</b><br />';
+                    html += data[i]['content'];
+                    html += '<hr>';
+                }
+                $$('#response').html(html);
+            },
+        });
+    });
+});
+    </script>
+</head>
+<body>
+    <form id='queryForm' name='queryForm'>
+        <label>Query:</label><input type='text' id='query' />
+        <input type='button' value='Go' id="but" />
+    </form>
+    <div id='response'>
+    </div>
+</body>
+</html>
