@@ -1,6 +1,6 @@
 from common import *
 d = {}
-with open('../transDict.txt') as f:
+with open('../googleTransDict.txt') as f:
     for line in f.readlines():
         line = line[:-1]
         k, v = line.split()

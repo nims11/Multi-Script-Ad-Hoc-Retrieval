@@ -66,6 +66,8 @@ def computeAll(word):
 
 
 def transliterate(word):
+    if word in transDict:
+        return list(transDict[word])[0], 1.0
     if isHindi(word):
         return word, 1.0
     word = word.lower()
